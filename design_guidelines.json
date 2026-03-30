@@ -1,0 +1,92 @@
+{
+  "project_name": "Pursuing Solutions - Pathways to the Future",
+  "domain": "Gen Z Career Coaching",
+  "theme": "light",
+  "archetype": "Archetype 3 (Pastel & Soft) mixed with Neo-Brutalist contrast",
+  "design_philosophy": "Engaging, relatable, and actionable for a Gen Z audience. Reject corporate sterility. Embrace 'Tactile Neo-Brutalism' — bold typography, chunky black borders, confident solid colors (Teal, Blue, Green, Red accents), and hard drop shadows. The design should feel like a digital sticker book mixed with a high-end productivity tool.",
+  "colors": {
+    "background": "#F8F9FA",
+    "surface": "#FFFFFF",
+    "foreground": "#111827",
+    "primary": "#00A896",
+    "primary_hover": "#008B7A",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#028090",
+    "secondary_foreground": "#FFFFFF",
+    "accent_green": "#02C39A",
+    "accent_red": "#F05D5E",
+    "accent_yellow": "#FFD166",
+    "border": "#111827"
+  },
+  "typography": {
+    "fonts": {
+      "headings": "'Outfit', sans-serif",
+      "body": "'DM Sans', sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-none text-[#111827]",
+      "h2": "text-4xl md:text-5xl font-bold tracking-tight text-[#111827]",
+      "h3": "text-2xl md:text-3xl font-bold tracking-tight text-[#111827]",
+      "body": "text-base md:text-lg text-gray-800 leading-relaxed font-medium"
+    },
+    "banned_fonts": ["Inter", "Roboto", "Open Sans"]
+  },
+  "surfaces_and_shadows": {
+    "neo_brutalist_card": "bg-white border-2 border-[#111827] rounded-xl shadow-[4px_4px_0_0_#111827]",
+    "neo_brutalist_card_hover": "hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#111827] transition-all duration-200",
+    "colored_card_teal": "bg-[#00A896] text-white border-2 border-[#111827] rounded-xl shadow-[4px_4px_0_0_#111827]",
+    "colored_card_yellow": "bg-[#FFD166] text-[#111827] border-2 border-[#111827] rounded-xl shadow-[4px_4px_0_0_#111827]",
+    "button_primary": "bg-[#00A896] text-white font-bold px-6 py-3 border-2 border-[#111827] rounded-lg shadow-[4px_4px_0_0_#111827] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#111827] transition-all duration-200 active:translate-y-0 active:shadow-[0_0_0_0_#111827]",
+    "button_secondary": "bg-white text-[#111827] font-bold px-6 py-3 border-2 border-[#111827] rounded-lg shadow-[4px_4px_0_0_#111827] hover:bg-gray-50 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#111827] transition-all duration-200 active:translate-y-0 active:shadow-[0_0_0_0_#111827]"
+  },
+  "layout_and_spacing": {
+    "section_padding": "py-20 md:py-32 px-6 md:px-12 max-w-7xl mx-auto",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8",
+    "border_radius": "rounded-xl"
+  },
+  "media_assets": {
+    "brand_logo": {
+      "url": "https://customer-assets.emergentagent.com/job_purpose-pilot/artifacts/nujre642_IMG_0157.JPG",
+      "description": "Main brand logo for header and footer. Use object-contain and ensure it's wrapped in a border-2 neo-brutalist circle or rounded rect if suitable."
+    },
+    "advisor_photo": {
+      "url": "https://customer-assets.emergentagent.com/job_purpose-pilot/artifacts/2qw0fvjw_IMG_0158.JPG",
+      "description": "Portrait of the Pathway Advisor for the booking section. Display inside a neo-brutalist card."
+    },
+    "hero_image": {
+      "url": "https://images.pexels.com/photos/8217198/pexels-photo-8217198.jpeg",
+      "description": "Diverse students collaborating. Use as the main hero visual. Wrap in a heavy border with shadow."
+    },
+    "feature_collaboration": {
+      "url": "https://images.pexels.com/photos/9433169/pexels-photo-9433169.jpeg",
+      "description": "Gen Z team working together creatively. Use in the 'How It Works' or 'Features' bento grid."
+    },
+    "abstract_shape": {
+      "url": "https://images.pexels.com/photos/34393350/pexels-photo-34393350.jpeg",
+      "description": "Abstract fluid teal shape. Use as an absolute positioned decorative element behind cards or in empty spaces."
+    },
+    "testimonial_student_1": {
+      "url": "https://images.pexels.com/photos/6214726/pexels-photo-6214726.jpeg",
+      "description": "Student portrait for testimonial."
+    },
+    "testimonial_student_2": {
+      "url": "https://images.unsplash.com/photo-1726710856076-dcf34775ab93?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwzfHxjb25maWRlbnQlMjBnZW4lMjB6JTIwc3R1ZGVudCUyMHBvcnRyYWl0fGVufDB8fHx8MTc3NDg5NTI3NHww&ixlib=rb-4.1.0&q=85",
+      "description": "Student portrait for testimonial."
+    }
+  },
+  "sections_instructions": {
+    "Header": "Solid white background. Thick bottom border (`border-b-2 border-black`). Logo on the left, primary navigation links center, 'Get Started' secondary button on the right. Links should have hover underline effects (thick offset underlines).",
+    "Hero": "Two-column layout. Left: Massive H1 typography ('Your Future. Decoded.'), followed by Gen Z tailored subtext. CTA Buttons: 'Take Free Assessment' (Primary) and 'Book a Call' (Secondary). Right: A neo-brutalist image frame holding `hero_image`, slightly rotated (-2deg) for a dynamic feel.",
+    "Features_How_It_Works": "A 'Bento Grid' layout. Step 1, 2, 3 displayed as distinct cards with massive numbers (e.g., '01', '02'). Use a mix of `colored_card_teal`, `colored_card_yellow`, and standard white cards. Emphasize the 'Research-backed assessment tools' here.",
+    "Assessment_Preview": "A highly interactive section (mocked). Show a visual representation of the assessment quiz. E.g., a card asking a career question with 3 chunky, clickable-looking answer options. This builds curiosity.",
+    "Testimonials": "Use `react-fast-marquee` for an endless scroll of student quotes. Cards should be heavily styled neo-brutalist blocks with the student portraits (`testimonial_student_1`, `testimonial_student_2`) in circular, thick-bordered avatars.",
+    "Pricing": "3-tier pricing grid. Emphasize the middle plan by making it slightly taller, using `bg-[#028090] text-white`, and adding a 'Most Popular' bright yellow pill/badge at the top. Hard shadows on all.",
+    "Book_Advisor_Call": "Split layout. Left side: The advisor's pitch with `advisor_photo` in a bold frame. Right side: A mocked Microsoft Outlook Calendar iframe placeholder (a clean, neo-brutalist mocked UI of a calendar with selectable times).",
+    "Footer": "Massive text. Solid dark background (`bg-[#111827] text-white`). 'Ready to start pursuing solutions?' Add an email capture input field (white input, black text, thick border) with a bright accent submit button."
+  },
+  "technical_requirements": {
+    "testing": "All interactive elements must include `data-testid` attributes (e.g., `data-testid='take-assessment-hero-btn'`).",
+    "icons": "Use `lucide-react` with bold `strokeWidth={2.5}` to match the neo-brutalist chunkiness.",
+    "components": "Use custom HTML/Tailwind for the main layouts. If using Shadcn (e.g., for forms/inputs), override the default Vercel-like thin borders with `border-2 border-[#111827] shadow-[2px_2px_0_0_#111827]`."
+  }
+}
