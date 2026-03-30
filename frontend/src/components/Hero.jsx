@@ -6,25 +6,23 @@ const LOGO_URL = "https://customer-assets.emergentagent.com/job_purpose-pilot/ar
 export const Hero = ({ onTakeAssessment, onBookCall }) => {
   return (
     <section className="section-padding" data-testid="hero-section">
+      {/* Centered Logo and Brand Name */}
+      <div className="text-center mb-12">
+        <div className="inline-block w-28 h-28 md:w-36 md:h-36 border-[#111827] rounded-full overflow-hidden bg-white mb-6" style={{ boxShadow: '6px 6px 0 0 #111827', borderWidth: '4px' }}>
+          <img src={LOGO_URL} alt="Pursuing Solutions" className="w-full h-full object-contain p-3" />
+        </div>
+        <h1 
+          className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-none text-[#111827] mb-2"
+          style={{ fontFamily: 'Outfit, sans-serif' }}
+        >
+          Pursuing Solutions
+        </h1>
+        <p className="text-xl md:text-2xl text-[#00A896] font-bold">Pathways to the Future</p>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left Content */}
         <div className="order-2 lg:order-1">
-          {/* Large Logo and Brand Name */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-20 h-20 md:w-24 md:h-24 border-3 border-[#111827] rounded-full overflow-hidden bg-white" style={{ boxShadow: '4px 4px 0 0 #111827', borderWidth: '3px' }}>
-              <img src={LOGO_URL} alt="Pursuing Solutions" className="w-full h-full object-contain p-2" />
-            </div>
-            <div>
-              <h2 
-                className="text-2xl md:text-3xl font-black text-[#111827] tracking-tight"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Pursuing Solutions
-              </h2>
-              <p className="text-sm md:text-base text-[#00A896] font-semibold">Pathways to the Future</p>
-            </div>
-          </div>
-
           <div className="inline-flex items-center gap-2 bg-[#FFD166] text-[#111827] px-4 py-2 rounded-full border-2 border-[#111827] mb-6" style={{ boxShadow: '2px 2px 0 0 #111827' }}>
             <Sparkles strokeWidth={2.5} size={18} />
             <span className="font-semibold text-sm">AI-Powered Career Discovery</span>
