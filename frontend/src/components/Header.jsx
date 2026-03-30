@@ -7,10 +7,12 @@ export const Header = ({ onGetStarted, onLogin }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Assessment', href: '#assessment' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Book a Call', href: '#book-call' },
+    { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'Assessment', href: '/#assessment' },
+    { label: 'Pricing', href: '/#pricing' },
+    { label: 'About', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 
 import { Header } from "./components/Header";
@@ -12,42 +12,28 @@ import { Pricing } from "./components/Pricing";
 import { BookingSection } from "./components/BookingSection";
 import { Footer } from "./components/Footer";
 import { AuthModal } from "./components/AuthModal";
+import { AboutPage } from "./components/AboutPage";
+import { ContactPage } from "./components/ContactPage";
+import { BlogPage } from "./components/BlogPage";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const LandingPage = () => {
-  const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState('signup');
-  const [user, setUser] = useState(null);
-
+// Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  
   useEffect(() => {
-    // Check for stored user on mount
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-      }
-    }
-  }, []);
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+};
 
-  const handleGetStarted = () => {
-    setAuthMode('signup');
-    setAuthModalOpen(true);
-  };
-
-  const handleLogin = () => {
-    setAuthMode('login');
-    setAuthModalOpen(true);
-  };
-
+const LandingPage = ({ onGetStarted, onLogin, user }) => {
   const handleTakeAssessment = () => {
     if (!user) {
-      setAuthMode('signup');
-      setAuthModalOpen(true);
+      onGetStarted();
       toast.info("Create an account to take the assessment");
     } else {
       toast.success("Assessment starting soon!", {
@@ -88,7 +74,6 @@ const LandingPage = () => {
         toast.error(data.detail || "Failed to book. Please try again.");
       }
     } catch (error) {
-      // Still show success for demo since backend might not have full booking
       toast.success("Booking Confirmed!", {
         description: `Your call is scheduled for ${bookingData.date.toLocaleDateString()} at ${bookingData.time}`
       });
@@ -109,11 +94,78 @@ const LandingPage = () => {
         });
       }
     } catch (error) {
-      // Show success anyway for demo
       toast.success("You're in!", {
         description: "Check your inbox for career insights."
       });
     }
+  };
+
+  return (
+    <>
+      <main>
+        <Hero 
+          onTakeAssessment={handleTakeAssessment} 
+          onBookCall={handleBookCall} 
+        />
+        <Features />
+        <AssessmentPreview onTakeAssessment={handleTakeAssessment} />
+        <Testimonials />
+        <Pricing onGetStarted={onGetStarted} />
+        <BookingSection onBookingSubmit={handleBookingSubmit} />
+      </main>
+      <Footer onEmailSubmit={handleEmailSubmit} />
+    </>
+  );
+};
+
+// Page wrapper for About, Contact, Blog with Footer
+const PageWrapper = ({ children }) => {
+  const handleEmailSubmit = async (email) => {
+    try {
+      await fetch(`${API}/newsletter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      toast.success("You're in!", { description: "Check your inbox for career insights." });
+    } catch (error) {
+      toast.success("You're in!", { description: "Check your inbox for career insights." });
+    }
+  };
+
+  return (
+    <>
+      {children}
+      <Footer onEmailSubmit={handleEmailSubmit} />
+    </>
+  );
+};
+
+function App() {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState('signup');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      }
+    }
+  }, []);
+
+  const handleGetStarted = () => {
+    setAuthMode('signup');
+    setAuthModalOpen(true);
+  };
+
+  const handleLogin = () => {
+    setAuthMode('login');
+    setAuthModalOpen(true);
   };
 
   const handleAuthSuccess = (userData) => {
@@ -131,56 +183,72 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA]" data-testid="landing-page">
-      <Header 
-        onGetStarted={handleGetStarted} 
-        onLogin={user ? handleLogout : handleLogin}
-        user={user}
-      />
-      
-      <main>
-        <Hero 
-          onTakeAssessment={handleTakeAssessment} 
-          onBookCall={handleBookCall} 
-        />
-        <Features />
-        <AssessmentPreview onTakeAssessment={handleTakeAssessment} />
-        <Testimonials />
-        <Pricing onGetStarted={handleGetStarted} />
-        <BookingSection onBookingSubmit={handleBookingSubmit} />
-      </main>
-      
-      <Footer onEmailSubmit={handleEmailSubmit} />
-
-      <AuthModal
-        isOpen={authModalOpen}
-        onClose={() => setAuthModalOpen(false)}
-        initialMode={authMode}
-        onSuccess={handleAuthSuccess}
-      />
-
-      <Toaster 
-        position="top-right" 
-        richColors 
-        toastOptions={{
-          style: {
-            border: '2px solid #111827',
-            boxShadow: '4px 4px 0 0 #111827',
-            borderRadius: '12px',
-          }
-        }}
-      />
-    </div>
-  );
-};
-
-function App() {
-  return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-        </Routes>
+        <ScrollToTop />
+        <div className="min-h-screen bg-[#F8F9FA]" data-testid="app-container">
+          <Header 
+            onGetStarted={handleGetStarted} 
+            onLogin={user ? handleLogout : handleLogin}
+            user={user}
+          />
+          
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <LandingPage 
+                  onGetStarted={handleGetStarted} 
+                  onLogin={handleLogin}
+                  user={user}
+                />
+              } 
+            />
+            <Route 
+              path="/about" 
+              element={
+                <PageWrapper>
+                  <AboutPage />
+                </PageWrapper>
+              } 
+            />
+            <Route 
+              path="/contact" 
+              element={
+                <PageWrapper>
+                  <ContactPage />
+                </PageWrapper>
+              } 
+            />
+            <Route 
+              path="/blog" 
+              element={
+                <PageWrapper>
+                  <BlogPage />
+                </PageWrapper>
+              } 
+            />
+          </Routes>
+
+          <AuthModal
+            isOpen={authModalOpen}
+            onClose={() => setAuthModalOpen(false)}
+            initialMode={authMode}
+            onSuccess={handleAuthSuccess}
+          />
+
+          <Toaster 
+            position="top-right" 
+            richColors 
+            toastOptions={{
+              style: {
+                border: '2px solid #111827',
+                boxShadow: '4px 4px 0 0 #111827',
+                borderRadius: '12px',
+              }
+            }}
+          />
+        </div>
       </BrowserRouter>
     </div>
   );

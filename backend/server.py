@@ -85,6 +85,12 @@ class BookingResponse(BaseModel):
     status: str
     created_at: str
 
+class ContactForm(BaseModel):
+    name: str
+    email: EmailStr
+    subject: str
+    message: str
+
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -207,6 +213,29 @@ async def subscribe_newsletter(subscription: NewsletterSubscription):
     
     logger.info(f"New newsletter subscription: {subscription.email}")
     return {"message": "Successfully subscribed", "email": subscription.email}
+
+
+# ============== CONTACT ROUTES ==============
+
+@api_router.post("/contact")
+async def submit_contact_form(form: ContactForm):
+    contact_id = str(uuid.uuid4())
+    
+    contact_doc = {
+        "id": contact_id,
+        "name": form.name,
+        "email": form.email,
+        "subject": form.subject,
+        "message": form.message,
+        "status": "new",
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    await db.contacts.insert_one(contact_doc)
+    
+    logger.info(f"New contact form submission: {contact_id} from {form.email}")
+    
+    return {"message": "Message received successfully", "id": contact_id}
 
 
 # ============== BOOKING ROUTES ==============
