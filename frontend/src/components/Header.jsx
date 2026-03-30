@@ -42,13 +42,6 @@ export const Header = ({ onGetStarted, onLogin }) => {
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-4">
           <button
-            onClick={onLogin}
-            className="font-semibold text-[#111827] hover-underline"
-            data-testid="login-btn"
-          >
-            Log In
-          </button>
-          <button
             onClick={onGetStarted}
             className="btn-primary text-sm"
             data-testid="get-started-header-btn"
@@ -84,13 +77,6 @@ export const Header = ({ onGetStarted, onLogin }) => {
             ))}
           </nav>
           <div className="flex flex-col gap-3">
-            <button
-              onClick={() => { onLogin(); setMobileMenuOpen(false); }}
-              className="btn-secondary w-full"
-              data-testid="mobile-login-btn"
-            >
-              Log In
-            </button>
             <button
               onClick={() => { onGetStarted(); setMobileMenuOpen(false); }}
               className="btn-primary w-full"

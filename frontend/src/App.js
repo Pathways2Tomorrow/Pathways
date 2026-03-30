@@ -11,10 +11,10 @@ import { Testimonials } from "./components/Testimonials";
 import { Pricing } from "./components/Pricing";
 import { BookingSection } from "./components/BookingSection";
 import { Footer } from "./components/Footer";
-import { AuthModal } from "./components/AuthModal";
 import { AboutPage } from "./components/AboutPage";
 import { ContactPage } from "./components/ContactPage";
 import { BlogPage } from "./components/BlogPage";
+import { ComingSoonModal } from "./components/ComingSoonModal";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -30,53 +30,11 @@ const ScrollToTop = () => {
   return null;
 };
 
-const LandingPage = ({ onGetStarted, onLogin, user }) => {
-  const handleTakeAssessment = () => {
-    if (!user) {
-      onGetStarted();
-      toast.info("Create an account to take the assessment");
-    } else {
-      toast.success("Assessment starting soon!", {
-        description: "We're preparing your personalized questions."
-      });
-    }
-  };
-
+const LandingPage = ({ onComingSoon }) => {
   const handleBookCall = () => {
     const element = document.getElementById('book-call');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleBookingSubmit = async (bookingData) => {
-    try {
-      const response = await fetch(`${API}/bookings`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
-        },
-        body: JSON.stringify({
-          date: bookingData.date.toISOString(),
-          time: bookingData.time,
-          user_email: user?.email || '',
-          user_name: user?.name || 'Guest'
-        }),
-      });
-
-      if (response.ok) {
-        toast.success("Booking Confirmed!", {
-          description: `Your call is scheduled for ${bookingData.date.toLocaleDateString()} at ${bookingData.time}`
-        });
-      } else {
-        const data = await response.json();
-        toast.error(data.detail || "Failed to book. Please try again.");
-      }
-    } catch (error) {
-      toast.success("Booking Confirmed!", {
-        description: `Your call is scheduled for ${bookingData.date.toLocaleDateString()} at ${bookingData.time}`
-      });
     }
   };
 
@@ -90,12 +48,12 @@ const LandingPage = ({ onGetStarted, onLogin, user }) => {
 
       if (response.ok) {
         toast.success("You're in!", {
-          description: "Check your inbox for career insights."
+          description: "We'll notify you when we launch!"
         });
       }
     } catch (error) {
       toast.success("You're in!", {
-        description: "Check your inbox for career insights."
+        description: "We'll notify you when we launch!"
       });
     }
   };
@@ -104,14 +62,14 @@ const LandingPage = ({ onGetStarted, onLogin, user }) => {
     <>
       <main>
         <Hero 
-          onTakeAssessment={handleTakeAssessment} 
+          onTakeAssessment={onComingSoon} 
           onBookCall={handleBookCall} 
         />
         <Features />
-        <AssessmentPreview onTakeAssessment={handleTakeAssessment} />
+        <AssessmentPreview onTakeAssessment={onComingSoon} />
         <Testimonials />
-        <Pricing onGetStarted={onGetStarted} />
-        <BookingSection onBookingSubmit={handleBookingSubmit} />
+        <Pricing onGetStarted={onComingSoon} />
+        <BookingSection onComingSoon={onComingSoon} />
       </main>
       <Footer onEmailSubmit={handleEmailSubmit} />
     </>
@@ -127,9 +85,9 @@ const PageWrapper = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      toast.success("You're in!", { description: "Check your inbox for career insights." });
+      toast.success("You're in!", { description: "We'll notify you when we launch!" });
     } catch (error) {
-      toast.success("You're in!", { description: "Check your inbox for career insights." });
+      toast.success("You're in!", { description: "We'll notify you when we launch!" });
     }
   };
 
@@ -142,44 +100,10 @@ const PageWrapper = ({ children }) => {
 };
 
 function App() {
-  const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState('signup');
-  const [user, setUser] = useState(null);
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-      }
-    }
-  }, []);
-
-  const handleGetStarted = () => {
-    setAuthMode('signup');
-    setAuthModalOpen(true);
-  };
-
-  const handleLogin = () => {
-    setAuthMode('login');
-    setAuthModalOpen(true);
-  };
-
-  const handleAuthSuccess = (userData) => {
-    setUser(userData);
-    toast.success(`Welcome${userData.name ? `, ${userData.name}` : ''}!`, {
-      description: "You're all set to explore your pathways."
-    });
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
-    toast.info("You've been logged out");
+  const handleComingSoon = () => {
+    setComingSoonOpen(true);
   };
 
   return (
@@ -188,21 +112,14 @@ function App() {
         <ScrollToTop />
         <div className="min-h-screen bg-[#F8F9FA]" data-testid="app-container">
           <Header 
-            onGetStarted={handleGetStarted} 
-            onLogin={user ? handleLogout : handleLogin}
-            user={user}
+            onGetStarted={handleComingSoon} 
+            onLogin={handleComingSoon}
           />
           
           <Routes>
             <Route 
               path="/" 
-              element={
-                <LandingPage 
-                  onGetStarted={handleGetStarted} 
-                  onLogin={handleLogin}
-                  user={user}
-                />
-              } 
+              element={<LandingPage onComingSoon={handleComingSoon} />} 
             />
             <Route 
               path="/about" 
@@ -230,11 +147,9 @@ function App() {
             />
           </Routes>
 
-          <AuthModal
-            isOpen={authModalOpen}
-            onClose={() => setAuthModalOpen(false)}
-            initialMode={authMode}
-            onSuccess={handleAuthSuccess}
+          <ComingSoonModal
+            isOpen={comingSoonOpen}
+            onClose={() => setComingSoonOpen(false)}
           />
 
           <Toaster 
