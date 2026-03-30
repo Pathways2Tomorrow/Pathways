@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_purpose-pilot/artifacts/nujre642_IMG_0157.JPG";
+
 export const Header = ({ onGetStarted, onLogin }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -16,11 +18,11 @@ export const Header = ({ onGetStarted, onLogin }) => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b-2 border-[#111827]" data-testid="header">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo Text Only */}
+        {/* Logo Only */}
         <a href="/" className="flex items-center" data-testid="logo-link">
-          <span className="font-black text-[#111827] text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Pursuing Solutions
-          </span>
+          <div className="w-12 h-12 md:w-14 md:h-14 border-2 border-[#111827] rounded-full overflow-hidden bg-white" style={{ boxShadow: '2px 2px 0 0 #111827' }}>
+            <img src={LOGO_URL} alt="Pursuing Solutions" className="w-full h-full object-contain p-1" />
+          </div>
         </a>
 
         {/* Desktop Navigation */}
