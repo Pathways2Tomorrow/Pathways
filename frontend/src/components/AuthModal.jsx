@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, Mail, Lock, User, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 export const AuthModal = ({ isOpen, onClose, initialMode = 'login', onSuccess }) => {
   const [mode, setMode] = useState(initialMode); // 'login' or 'signup'
+  
+  // Update mode when initialMode prop changes
+  useEffect(() => {
+    if (isOpen) {
+      setMode(initialMode);
+    }
+  }, [isOpen, initialMode]);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
