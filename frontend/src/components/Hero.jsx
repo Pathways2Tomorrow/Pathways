@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
 
-const HERO_IMAGE = "https://images.pexels.com/photos/7551234/pexels-photo-7551234.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+const HERO_IMAGE = "https://images.pexels.com/photos/8380075/pexels-photo-8380075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 
 export const Hero = ({ onTakeAssessment, onBookCall }) => {
   return (
