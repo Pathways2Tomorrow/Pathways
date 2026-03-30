@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 const HERO_IMAGE = "https://images.pexels.com/photos/8380075/pexels-photo-8380075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_purpose-pilot/artifacts/nujre642_IMG_0157.JPG";
 
 export const Hero = ({ onTakeAssessment, onBookCall }) => {
   return (
@@ -8,6 +9,22 @@ export const Hero = ({ onTakeAssessment, onBookCall }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left Content */}
         <div className="order-2 lg:order-1">
+          {/* Large Logo and Brand Name */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-20 h-20 md:w-24 md:h-24 border-3 border-[#111827] rounded-full overflow-hidden bg-white" style={{ boxShadow: '4px 4px 0 0 #111827', borderWidth: '3px' }}>
+              <img src={LOGO_URL} alt="Pursuing Solutions" className="w-full h-full object-contain p-2" />
+            </div>
+            <div>
+              <h2 
+                className="text-2xl md:text-3xl font-black text-[#111827] tracking-tight"
+                style={{ fontFamily: 'Outfit, sans-serif' }}
+              >
+                Pursuing Solutions
+              </h2>
+              <p className="text-sm md:text-base text-[#00A896] font-semibold">Pathways to the Future</p>
+            </div>
+          </div>
+
           <div className="inline-flex items-center gap-2 bg-[#FFD166] text-[#111827] px-4 py-2 rounded-full border-2 border-[#111827] mb-6" style={{ boxShadow: '2px 2px 0 0 #111827' }}>
             <Sparkles strokeWidth={2.5} size={18} />
             <span className="font-semibold text-sm">AI-Powered Career Discovery</span>
