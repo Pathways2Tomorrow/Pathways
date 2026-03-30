@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "total_tests": 8,
+    "passed_tests": 8,
+    "success_rate": "100.0%",
+    "timestamp": "2026-03-30T18:38:30.172825"
+  },
+  "test_results": [
+    {
+      "test": "Health Check",
+      "success": true,
+      "details": "Status: 200, Response: {'status': 'healthy', 'service': 'Pursuing Solutions API'}",
+      "timestamp": "2026-03-30T18:38:28.721973"
+    },
+    {
+      "test": "Root Endpoint",
+      "success": true,
+      "details": "Status: 200, Message: Pursuing Solutions API - Pathways to the Future",
+      "timestamp": "2026-03-30T18:38:28.875681"
+    },
+    {
+      "test": "User Registration",
+      "success": true,
+      "details": "Status: 200, User ID: e51c6462-5ea1-476d-b94c-237f37de7041, Token received: Yes",
+      "timestamp": "2026-03-30T18:38:29.264803"
+    },
+    {
+      "test": "User Login",
+      "success": true,
+      "details": "Status: 200, Token received: Yes, User ID matches: True",
+      "timestamp": "2026-03-30T18:38:29.605647"
+    },
+    {
+      "test": "Auth Me Endpoint",
+      "success": true,
+      "details": "Status: 200, User ID: e51c6462-5ea1-476d-b94c-237f37de7041, Email: test_183828@example.com",
+      "timestamp": "2026-03-30T18:38:29.744937"
+    },
+    {
+      "test": "Newsletter Subscription",
+      "success": true,
+      "details": "Status: 200, Message: Successfully subscribed",
+      "timestamp": "2026-03-30T18:38:29.901094"
+    },
+    {
+      "test": "Booking Creation",
+      "success": true,
+      "details": "Status: 200, Booking ID: 8ff2b5b7-aee1-478e-a8e4-c46e49710d33, Status: confirmed",
+      "timestamp": "2026-03-30T18:38:30.025777"
+    },
+    {
+      "test": "Get Bookings",
+      "success": true,
+      "details": "Status: 200, Bookings count: 1",
+      "timestamp": "2026-03-30T18:38:30.171864"
+    }
+  ]
+}
