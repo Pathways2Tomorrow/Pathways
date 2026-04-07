@@ -17,7 +17,7 @@ export const Hero = ({ onTakeAssessment, onBookCall }) => {
         >
           Pursuing Solutions
         </h1>
-        <p className="text-xl md:text-2xl text-[#00A896] font-bold">Pathways to the Future</p>
+        <p className="text-xl md:text-2xl text-[#00A896] font-bold">Pathways to Your Future</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
