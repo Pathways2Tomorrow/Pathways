@@ -48,20 +48,20 @@ export const ContactPage = () => {
     {
       icon: Mail,
       title: "Email Us",
-      value: "hello@pursuingsolutions.net",
+      value: "administrator@pursuingsolutions.net",
       description: "We respond within 24 hours",
     },
     {
       icon: Phone,
       title: "Call Us",
-      value: "(555) 123-4567",
+      value: "(910) 585-0923",
       description: "Mon-Fri, 9am-5pm EST",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      value: "123 Career Lane",
-      description: "Atlanta, GA 30301",
+      value: "2033 Waterstone Lane",
+      description: "High Point, NC 27265",
     },
     {
       icon: Clock,
