@@ -4,22 +4,22 @@ const ADVISOR_PHOTO = "https://customer-assets.emergentagent.com/job_purpose-pil
 
 const teamMembers = [
   {
-    name: "Dr. Patricia Williams",
+    name: "Vicky Locklear",
     role: "Founder & Lead Pathway Advisor",
     image: ADVISOR_PHOTO,
-    bio: "20+ years guiding young adults through career transitions. PhD in Career Psychology from Stanford.",
+    bio: "20+ years guiding young adults through career transitions. MA in Higher Education Administration from Louisiana State University.",
   },
   {
-    name: "Marcus Chen",
+    name: "Angela Nicholson",
     role: "Head of Assessment Design",
     image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
-    bio: "Former Google UX researcher. Expert in psychometric assessment tools and user experience.",
+    bio: Workforce Development Expert",graduate of Elon College.
   },
   {
-    name: "Aisha Johnson",
-    role: "Community & Partnerships",
+    name: "Taylor Wrencher",
+    role: "Child Psychologist",
     image: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300",
-    bio: "Built partnerships with 100+ schools and universities. Passionate about educational equity.",
+    bio: "Passionate about educational equity.", MS Child Psychology from University College, London
   },
 ];
 
